@@ -69,5 +69,45 @@ def fib2(n)
     start
 end
 
-p fib2(5)
-p fib2(6)
+# p fib2(5)
+# p fib2(6)
+
+def bsearch(array, target)
+    # if !array.include?(target)
+    #     return nil
+    # end
+    # idx = array.length / 2
+    # if array[idx] == target 
+    #     return idx 
+    # elsif target > array[idx]
+    #     idx += bsearch(array[idx..-1], target)
+    # elsif target < array[idx]
+    #     bsearch(array[0...idx], target) #[1,3,5]
+    # end
+
+    if !array.include?(target)
+        return nil
+    end
+    idx = array.length / 2
+    sub1 = array[idx..-1]
+    sub2 = array[0...idx]
+    if array[idx] == target 
+        return idx 
+    end
+
+    if target > array[idx]
+        idx += bsearch(sub1, target)
+    elsif target < array[idx]
+        bsearch(sub2, target) #[1,3,5]
+    end
+end
+
+
+
+p bsearch([1, 2, 3], 1) # => 0
+p bsearch([2, 3, 4, 5], 3) # => 1
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
+p bsearch([1, 3, 4, 5, 9], 5) # => 3
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
