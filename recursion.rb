@@ -37,3 +37,37 @@ def deep_dup(array)
 end
 
 # p deep_dup([1, [2], [3, [4]]])
+
+def fib1(n)
+    if n == 0 
+        return []
+    elsif n == 1
+        return [0]
+    elsif n == 2 
+        return [0, 1]
+    end
+
+    prev = fib1(n - 1)
+    prev << prev[-1] + prev[-2]
+    return prev
+end
+
+def fib2(n)
+    if n == 0 
+        return []
+    elsif n == 1
+        return [0]
+    elsif n == 2 
+        return [0, 1]
+    end
+    start = [0, 1]
+    
+    while n > start.length
+        new_num = start[-1] + start[-2]
+        start << new_num
+    end
+    start
+end
+
+p fib2(5)
+p fib2(6)
