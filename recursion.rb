@@ -111,3 +111,38 @@ p bsearch([1, 3, 4, 5, 9], 5) # => 3
 p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
 p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
 p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+
+def merge_sort(array)
+    if array.length == 0
+        return []
+    elsif array.length == 1
+        return array
+    end
+    middle = array.length / 2
+    left = array[0...middle]
+    right = array[middle..-1]
+    if right.length == 1
+        merge(left_sort, right)
+    end
+    left_sort = merge_sort(left)
+    right_sort = merge_sort(right)
+
+    merge(left_sort, right_sort)
+
+end
+
+def merge(left, right)
+    arr = []
+    (0...left.length).each do |i|
+        (0...right.length).each do |i2|
+            if left[i] > right[i2]
+                arr << right[i2]
+            else
+                arr << left[i]
+                break
+            end
+        end
+    end
+end
+    
+
